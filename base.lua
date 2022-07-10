@@ -51,6 +51,8 @@ module:hook_post_require("lib/managers/group_ai_states/groupaistatebase", "group
 module:hook_post_require("lib/managers/hudmanager", "hudmanager")
 -- Make quit dialog less annoying
 module:hook_post_require("lib/managers/menumanager", "menumanager")
+-- Support colors in some localization overrides
+module:hook_post_require("lib/managers/menu/menulobbyrenderer", "menulobbyrenderer")
 
 -- == LOCALIZATION
 module:add_localization_string("dialog_yes_save", {

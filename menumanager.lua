@@ -1,5 +1,6 @@
 local module = ... or D:module("zneixs_fixes")
 local MenuCallbackHandler = module:hook_class("MenuCallbackHandler")
+local MenuSTEAMHostBrowser = module:hook_class("MenuSTEAMHostBrowser")
 
 local quit_game_orig = MenuCallbackHandler.quit_game
 
@@ -32,3 +33,15 @@ function MenuCallbackHandler:quit_game()
 		focus_button = 1,
 	})
 end
+
+-- show game difficulty in the lobby browser entry
+module:post_hook(MenuSTEAMHostBrowser, "set_item_room_columns", function(self, params, room, attributes)
+	-- we patch an override from matchmaking_common/menumanager.lua, it has the following columns:
+	--string.utf8_upper(params.host_name),
+	--string.utf8_upper(params.real_level_name),
+	--string.utf8_upper(params.state_name), -- original which we replace
+	--string.format("%s/%s ", tostring(params.num_plrs), tostring(tweak_data.max_players or 4))
+
+	-- XXX: Isn't there a better way to do this?
+	params.columns[3] = string.format("%s%12s", string.gsub(string.utf8_upper(params.difficulty), "_", " "), string.utf8_upper(params.state_name))
+end, false)

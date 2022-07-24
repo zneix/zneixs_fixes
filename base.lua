@@ -50,6 +50,7 @@ module:hook_post_require("lib/managers/group_ai_states/groupaistatebase", "group
 -- Patch assault timer to respect custom assault break timer config option
 module:hook_post_require("lib/managers/hudmanager", "hudmanager")
 -- Make quit dialog less annoying
+-- Show game difficulty in the lobby browser entry
 module:hook_post_require("lib/managers/menumanager", "menumanager")
 -- Support colors in some localization overrides
 module:hook_post_require("lib/managers/menu/menulobbyrenderer", "menulobbyrenderer")

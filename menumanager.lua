@@ -2,11 +2,10 @@ local module = ... or D:module("zneixs_fixes")
 local MenuCallbackHandler = module:hook_class("MenuCallbackHandler")
 local MenuSTEAMHostBrowser = module:hook_class("MenuSTEAMHostBrowser")
 
-local quit_game_orig = MenuCallbackHandler.quit_game
-
-function MenuCallbackHandler:quit_game()
+-- replace the original quit_game function entirely
+module:hook(MenuCallbackHandler, "quit_game", function(self)
 	if not D:conf("zfx_simplify_quit_dialog") then
-		return quit_game_orig(self)
+		return module:call_orig(MenuCallbackHandler, "quit_game", self)
 	end
 
 	return managers.system_menu:show({
@@ -32,7 +31,7 @@ function MenuCallbackHandler:quit_game()
 		},
 		focus_button = 1,
 	})
-end
+end, false)
 
 -- show game difficulty in the lobby browser entry
 module:post_hook(MenuSTEAMHostBrowser, "set_item_room_columns", function(self, params, room, attributes)

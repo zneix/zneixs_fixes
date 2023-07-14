@@ -1,3 +1,6 @@
+## Unreleased
+- Added an option to always use the full reload animation on AK. It's just a cosmetic change.
+
 ## 1.0.3
 - Added an option to specify the custom colour for non-player/system messages' title (part before the comma) in chat.
 - Injected a silly game difficulty indicator to the lobby browser, likely phased out by the DAHM 1.16's native lobby ordering.

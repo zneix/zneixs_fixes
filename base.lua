@@ -28,6 +28,8 @@ local module = DMod:new(mod_id, {
 			zfx_simplify_quit_dialog_help = "Replaces original game quit dialog, so you can exit this miserable game even quicker.",
 			zfx_show_difficulty_in_lobby_browser = "Show heist difficulty in lobby browser",
 			zfx_show_difficulty_in_lobby_browser_help = "Shows the heist difficulty, next to amount of players in the lobby on the lobby browser.",
+			zfx_always_use_full_reload_ak = "Always perform full reload animation on AK",
+			zfx_always_use_full_reload_ak_help = "Makes AK always perform the full reload animation. Purely cosmetic, it will still take the same amount of time it should at all times.$NL;$NL;Requires restart to take the full effect.",
 		}
 	},
 })
@@ -40,6 +42,7 @@ module:add_config_option("zfx_fix_bain_coaching_solo", true)
 module:add_config_option("zfx_simplify_quit_dialog", false)
 module:add_config_option("zfx_chat_lobby_message_title_color", nil)
 module:add_config_option("zfx_show_difficulty_in_lobby_browser", false) -- probably phased out by DAHM's native feature achieving similar goal, so setting default to false
+module:add_config_option("zfx_always_full_reload_ak", false) -- might change this behaviour for all guns in the future plus this might be somewhat intrusive to others
 
 -- == MENU OPTIONS
 module:add_menu_option("zfx_disable_assault_image", {
@@ -62,6 +65,11 @@ module:add_menu_option("zfx_show_difficulty_in_lobby_browser", {
 	text_id = "zfx_show_difficulty_in_lobby_browser",
 	help_id = "zfx_show_difficulty_in_lobby_browser_help",
 })
+module:add_menu_option("zfx_always_full_reload_ak", {
+	type = "boolean",
+	text_id = "zfx_always_use_full_reload_ak",
+	help_id = "zfx_always_use_full_reload_ak_help",
+})
 
 -- == HOOKS
 -- Fix bain coaching solo heisters, telling them how to trade
@@ -75,5 +83,8 @@ module:hook_post_require("lib/managers/menumanager", "menumanager")
 module:hook_post_require("lib/managers/menu/menulobbyrenderer", "menulobbyrenderer")
 -- Support custom message title's colour for non-player/system messages' title (part before the comma) in chat
 module:hook_post_require("lib/tweak_data/tweakdata", "tweakdata")
+-- ak funny reload
+module:hook_post_require("lib/tweak_data/weapontweakdata", "weapontweakdata")
+module:hook_post_require("lib/units/beings/player/states/playerstandard", "playerstandard")
 
 return module

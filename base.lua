@@ -26,6 +26,8 @@ local module = DMod:new(mod_id, {
 			zfx_fix_bain_coaching_solo_help = "Stops bain from instructing last man standing during assault breaks when there's no teammates to be traded out of custody.",
 			zfx_simplify_quit_dialog = "Simplify game quit dialog",
 			zfx_simplify_quit_dialog_help = "Replaces original game quit dialog, so you can exit this miserable game even quicker.",
+			zfx_show_difficulty_in_lobby_browser = "Show heist difficulty in lobby browser",
+			zfx_show_difficulty_in_lobby_browser_help = "Shows the heist difficulty, next to amount of players in the lobby on the lobby browser.",
 		}
 	},
 })
@@ -37,6 +39,7 @@ module:add_config_option("zfx_disable_assault_image", false)
 module:add_config_option("zfx_fix_bain_coaching_solo", true)
 module:add_config_option("zfx_simplify_quit_dialog", false)
 module:add_config_option("zfx_chat_lobby_message_title_color", nil)
+module:add_config_option("zfx_show_difficulty_in_lobby_browser", false) -- probably phased out by DAHM's native feature achieving similar goal, so setting default to false
 
 -- == MENU OPTIONS
 module:add_menu_option("zfx_disable_assault_image", {
@@ -53,6 +56,11 @@ module:add_menu_option("zfx_simplify_quit_dialog", {
 	type = "boolean",
 	text_id = "zfx_simplify_quit_dialog",
 	help_id = "zfx_simplify_quit_dialog_help",
+})
+module:add_menu_option("zfx_show_difficulty_in_lobby_browser", {
+	type = "boolean",
+	text_id = "zfx_show_difficulty_in_lobby_browser",
+	help_id = "zfx_show_difficulty_in_lobby_browser_help",
 })
 
 -- == HOOKS

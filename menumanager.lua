@@ -41,6 +41,8 @@ module:post_hook(MenuSTEAMHostBrowser, "set_item_room_columns", function(self, p
 	--string.utf8_upper(params.state_name), -- original which we replace
 	--string.format("%s/%s ", tostring(params.num_plrs), tostring(tweak_data.max_players or 4))
 
-	-- XXX: Isn't there a better way to do this?
-	params.columns[3] = string.format("%s%12s", string.gsub(string.utf8_upper(params.difficulty), "_", " "), string.utf8_upper(params.state_name))
+	if D:conf("zfx_show_difficulty_in_lobby_browser") then
+		-- XXX: Isn't there a better way to do this?
+		params.columns[3] = string.format("%s%12s", string.gsub(string.utf8_upper(params.difficulty), "_", " "), string.utf8_upper(params.state_name))
+	end
 end, false)

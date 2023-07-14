@@ -31,10 +31,11 @@ local GroupAIStateBase = module:hook_class("GroupAIStateBase")
 -- rewrite of original with addition of the second condition block
 module:hook(50, GroupAIStateBase, "_coach_last_man_clbk", function(self)
 	if table.size(self:all_char_criminals()) == 1 and self:bain_state() then
-		if D:conf("zfx_fix_bain_coaching_solo") and not self:is_AI_enabled() then
+		if D:conf("zfx_fix_bain_coaching_solo") and (not self:is_AI_enabled()) then
 			module:log(3, "GroupAIStateBase:_coach_last_man_clbk", "shutting bain up, because player is alone and AI is disabled, so there's nobody to trade out of custody")
 			return
 		end
+		module:log(5, "GroupAIStateBase:_coach_last_man_clbk", "letting bain speak; ai enabled?", self:is_AI_enabled())
 		local _, crim = next(self:all_char_criminals())
 		local standing_name = managers.criminals:character_name_by_unit(crim.unit)
 		if standing_name == managers.criminals:local_character_name() then

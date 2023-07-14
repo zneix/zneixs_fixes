@@ -15,6 +15,19 @@ local module = DMod:new(mod_id, {
 		id = mod_id,
 		url = "https://cdn.zneix.eu/pdthmods/versions.json",
 	},
+	localization = {
+		english = {
+			dialog_yes_save = "YES, SAVE PROGRESS",
+			dialog_yes_dont_save = "YES, DON'T SAVE PROGRESS",
+			-- menu options
+			zfx_disable_assault_image = "Remove assault image and title",
+			zfx_disable_assault_image_help = "Removes red triangle and text during an ongoing assault.",
+			zfx_fix_bain_coaching_solo = "Fix bain coaching last man standing",
+			zfx_fix_bain_coaching_solo_help = "Stops bain from instructing last man standing during assault breaks when there's no teammates to be traded out of custody.",
+			zfx_simplify_quit_dialog = "Simplify game quit dialog",
+			zfx_simplify_quit_dialog_help = "Replaces original game quit dialog, so you can exit this miserable game even quicker.",
+		}
+	},
 })
 
 -- == CONFIG OPTIONS
@@ -27,21 +40,18 @@ module:add_config_option("zfx_simplify_quit_dialog", false)
 -- == MENU OPTIONS
 module:add_menu_option("zfx_disable_assault_image", {
 	type = "boolean",
-	localize = false,
-	text_id = "Remove assault image and title",
-	help_id = "Removes red triangle and text during an ongoing assault.",
+	text_id = "zfx_disable_assault_image",
+	help_id = "zfx_disable_assault_image_help",
 })
 module:add_menu_option("zfx_fix_bain_coaching_solo", {
 	type = "boolean",
-	localize = false,
-	text_id = "Fix bain coaching last man standing",
-	help_id = "Stops bain from instructing last man standing during assault breaks when there's no teammates to be traded out of custody.",
+	text_id = "zfx_fix_bain_coaching_solo",
+	help_id = "zfx_fix_bain_coaching_solo_help",
 })
 module:add_menu_option("zfx_simplify_quit_dialog", {
 	type = "boolean",
-	localize = false,
-	text_id = "Simplify game quit dialog",
-	help_id = "Replaces original game quit dialog, so you can exit this miserable game even quicker.",
+	text_id = "zfx_simplify_quit_dialog",
+	help_id = "zfx_simplify_quit_dialog_help",
 })
 
 -- == HOOKS
@@ -54,13 +64,5 @@ module:hook_post_require("lib/managers/hudmanager", "hudmanager")
 module:hook_post_require("lib/managers/menumanager", "menumanager")
 -- Support colours in some localization overrides
 module:hook_post_require("lib/managers/menu/menulobbyrenderer", "menulobbyrenderer")
-
--- == LOCALIZATION
-module:add_localization_string("dialog_yes_save", {
-	english = "YES, SAVE PROGRESS",
-})
-module:add_localization_string("dialog_yes_dont_save", {
-	english = "YES, DON'T SAVE PROGRESS",
-})
 
 return module

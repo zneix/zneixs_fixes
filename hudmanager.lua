@@ -34,17 +34,7 @@ module:post_hook(HUDManager, "sync_end_assault", function(self)
 	local assault_break_timer = D:conf("zfx_assault_break_timer_str")
 	module:log(5, "HUDManager:sync_end_assault", "patching assault timer format with assault break one: " .. assault_break_timer)
 
-	if assault_break_timer and type(assault_break_timer) == "string" and assault_break_timer ~= "" then
+	if type(assault_break_timer) == "string" and assault_break_timer ~= "" then
 		var_cache.sl_assault_timer_format = assault_break_timer
 	end
 end, false)
-
--- show real ammo
---module:post_hook(HUDManager, "set_ammo_amount", function(self, max_clip, current_clip, current_left)
-	--local hud = managers.hud:script(PlayerBase.PLAYER_HUD)
-	--if not hud then
-		--return
-	--end
-
-	--hud.ammo_amount:set_text(string.format("%d / %d", current_clip, (current_left - current_clip)))
---end, false)

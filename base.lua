@@ -36,6 +36,7 @@ module:add_config_option("zfx_assault_break_timer_str", "")
 module:add_config_option("zfx_disable_assault_image", false)
 module:add_config_option("zfx_fix_bain_coaching_solo", true)
 module:add_config_option("zfx_simplify_quit_dialog", false)
+module:add_config_option("zfx_chat_lobby_message_title_color", nil)
 
 -- == MENU OPTIONS
 module:add_menu_option("zfx_disable_assault_image", {
@@ -64,5 +65,7 @@ module:hook_post_require("lib/managers/hudmanager", "hudmanager")
 module:hook_post_require("lib/managers/menumanager", "menumanager")
 -- Support colours in some localization overrides
 module:hook_post_require("lib/managers/menu/menulobbyrenderer", "menulobbyrenderer")
+-- Support custom message title's colour for non-player/system messages' title (part before the comma) in chat
+module:hook_post_require("lib/tweak_data/tweakdata", "tweakdata")
 
 return module

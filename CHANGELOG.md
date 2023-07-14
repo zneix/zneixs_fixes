@@ -1,3 +1,6 @@
+## Unreleased
+- Added an option to specify the custom colour for non-player/system messages' title (part before the comma) in chat.
+
 ## 1.0.2
 - Added a fix for making `menu_waiting_is_not_ready` and `menu_waiting_is_ready` strings take custom colours (see updates to zneix's user.lua).
 - Dev: Rewritten simplified quit dialog logic.
